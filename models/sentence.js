@@ -1,12 +1,15 @@
 const mongoose = require('mongoose')
 
 const SentenceSchema = new mongoose.Schema({
-    record: { type: String, required: true },
+    data: { type: String, required: true },
     createdAt: { 
         type: Number,
-        default: Date.now()
+        default: () => {
+            return Date.now()
+        }
     },
-    evalCount: { type: Number, default: 0 },
+    reviewCount: { type: Number, default: 0 },
+    weight: { type: Number, required: true },
 }, { collection: 'coasl-stg-sentences' })
 
 const model = mongoose.model('SentenceModel', SentenceSchema)
